@@ -13,16 +13,16 @@ class StudentManagerApp extends StatefulWidget {
 class _StudentManagerAppState extends State<StudentManagerApp> {
   String appTopMessage = "App Name is here";
 
-  String selectedStudent = "Abc";
+  Student selectedStudent = new Student.withId(0, "", "", 0);
 
   List<Student> students = [
-    Student("mehmet", "cevdet", 40),
-    Student("ali", "cevdet", 65),
-    Student("serhat", "cevdet", 80),
-    Student("ibrahim", "cevdet", 25),
-    Student("koli", "cevdet", 55),
-    Student("servet", "cevdet", 78),
-    Student("mehmet", "cevdet", 10),
+    Student.withId(1,"mehmet", "cevdet", 40),
+    Student.withId(2,"ali", "cevdet", 65),
+    Student.withId(3,"serhat", "cevdet", 80),
+    Student.withId(4,"ibrahim", "cevdet", 25),
+    Student.withId(5,"koli", "cevdet", 55),
+    Student.withId(6,"servet", "cevdet", 78),
+    Student.withId(7,"mehmet", "cevdet", 10),
   ];
 
   @override
@@ -53,12 +53,12 @@ class _StudentManagerAppState extends State<StudentManagerApp> {
                       trailing: buildStatusIcon(students[index].grade),
                       onTap: () {
                         setState(() {
-                          selectedStudent = students[index].firstName;
+                          selectedStudent = students[index];
                         });
                       } //(context,students[index]),
                       );
                 })),
-        Text("Selected student : " + selectedStudent),
+        Text("Selected student : " + selectedStudent.firstName),
         Row(
           children: <Widget>[
             Flexible(
@@ -112,8 +112,10 @@ class _StudentManagerAppState extends State<StudentManagerApp> {
                   ],
                 ),
                 onPressed: () {
-                  var message = "button boş şuan";
-                  showMessage(context, message);
+                  setState(() {
+                    students.remove(selectedStudent);
+                  });
+                  showMessage(context, selectedStudent.firstName+" deleted");
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.red,
@@ -138,7 +140,7 @@ class _StudentManagerAppState extends State<StudentManagerApp> {
 
   void showMessage(BuildContext context, String message) {
     var alert =
-        AlertDialog(title: Text("Result of Exam"), content: Text(message));
+        AlertDialog(title: Text("process"), content: Text(message));
     showDialog(context: context, builder: (BuildContext context) => alert);
   }
 }
