@@ -52,19 +52,75 @@ class _StudentManagerAppState extends State<StudentManagerApp> {
                       subtitle: Text("score : " + students[index].getGrade),
                       trailing: buildStatusIcon(students[index].grade),
                       onTap: () {
-                        setState(() {selectedStudent=students[index].firstName;});
+                        setState(() {
+                          selectedStudent = students[index].firstName;
+                        });
                       } //(context,students[index]),
                       );
                 })),
-        Text("Selected student : "+selectedStudent),
-        Center(
-          child: ElevatedButton(
-            child: Text(appTopMessage),
-            onPressed: () {
-              var message = "button boş şuan";
-              showMessage(context, message);
-            },
-          ),
+        Text("Selected student : " + selectedStudent),
+        Row(
+          children: <Widget>[
+            Flexible(
+              fit: FlexFit.tight,
+              flex: 1,
+              child: ElevatedButton(
+                child: Row(
+                  children: [
+                    Icon(Icons.add),
+                    SizedBox(width: 5.0),
+                    Text("Add"),
+                  ],
+                ),
+                onPressed: () {
+                  var message = "button boş şuan";
+                  showMessage(context, message);
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.green,
+                ),
+              ),
+            ),
+            Flexible(
+              fit: FlexFit.tight,
+              flex: 1,
+              child: ElevatedButton(
+                child: Row(
+                  children: [
+                    Icon(Icons.update),
+                    SizedBox(
+                      width: 5.0,
+                    ),
+                    Text("Update"),
+                  ],
+                ),
+                onPressed: () {
+                  var message = "button boş şuan";
+                  showMessage(context, message);
+                },
+              ),
+            ),
+            Flexible(
+              fit: FlexFit.tight,
+              flex: 1,
+              child: ElevatedButton(
+                child: Row(
+                  children: [
+                    Icon(Icons.delete),
+                    SizedBox(width: 5.0),
+                    Text("delete"),
+                  ],
+                ),
+                onPressed: () {
+                  var message = "button boş şuan";
+                  showMessage(context, message);
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.red,
+                ),
+              ),
+            ),
+          ],
         ),
       ],
     );
