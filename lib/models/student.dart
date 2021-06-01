@@ -2,7 +2,7 @@ class Student {
   int id=0;
   String firstName="";
   String lastName="";
-  String status="a";
+  String status="";
   int grade=0;
 
   Student.withId(int id, String firstName, String lastName, int grade) {
@@ -11,7 +11,7 @@ class Student {
     this.lastName = lastName;
     this.grade = grade;
   }
-  Student(String firstName, String lastName, int grade) {
+  Student.withoutId(String firstName, String lastName, int grade) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.grade = grade;

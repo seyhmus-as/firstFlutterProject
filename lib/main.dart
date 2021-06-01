@@ -1,3 +1,4 @@
+import 'package:basic_widget/screens/student_add.dart';
 import 'package:flutter/material.dart';
 import 'models/student.dart';
 
@@ -73,8 +74,7 @@ class _StudentManagerAppState extends State<StudentManagerApp> {
                   ],
                 ),
                 onPressed: () {
-                  var message = "button boş şuan";
-                  showMessage(context, message);
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>StudentAdd()));
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.green,
