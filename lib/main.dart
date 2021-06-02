@@ -20,7 +20,7 @@ class _StudentManagerAppState extends State<StudentManagerApp> {
   List<Student> students = [
     Student.withId(1, "mehmet", "cevdet", 40),
     Student.withId(2, "ali", "cevdet", 65),
-    Student.withId(3, "serhat", "cevdet", 1 50),
+    Student.withId(3, "serhat", "cevdet", 50),
     Student.withId(4, "ibrahim", "cevdet", 25),
     Student.withId(5, "koli", "cevdet", 55),
     Student.withId(6, "servet", "cevdet", 78),
