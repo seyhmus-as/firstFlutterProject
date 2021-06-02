@@ -1,4 +1,5 @@
 import 'package:basic_widget/screens/student_add.dart';
+import 'package:basic_widget/screens/student_edit.dart';
 import 'package:flutter/material.dart';
 import 'models/student.dart';
 
@@ -17,13 +18,13 @@ class _StudentManagerAppState extends State<StudentManagerApp> {
   Student selectedStudent = new Student.withId(0, "", "", 0);
 
   List<Student> students = [
-    Student.withId(1,"mehmet", "cevdet", 40),
-    Student.withId(2,"ali", "cevdet", 65),
-    Student.withId(3,"serhat", "cevdet", 80),
-    Student.withId(4,"ibrahim", "cevdet", 25),
-    Student.withId(5,"koli", "cevdet", 55),
-    Student.withId(6,"servet", "cevdet", 78),
-    Student.withId(7,"mehmet", "cevdet", 10),
+    Student.withId(1, "mehmet", "cevdet", 40),
+    Student.withId(2, "ali", "cevdet", 65),
+    Student.withId(3, "serhat", "cevdet", 1 50),
+    Student.withId(4, "ibrahim", "cevdet", 25),
+    Student.withId(5, "koli", "cevdet", 55),
+    Student.withId(6, "servet", "cevdet", 78),
+    Student.withId(7, "mehmet", "cevdet", 10),
   ];
 
   @override
@@ -74,10 +75,9 @@ class _StudentManagerAppState extends State<StudentManagerApp> {
                   ],
                 ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>StudentAdd()));
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => StudentAdd(students)));
                 },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
+                style: ElevatedButton.styleFrom(primary: Colors.green,
                 ),
               ),
             ),
@@ -95,8 +95,7 @@ class _StudentManagerAppState extends State<StudentManagerApp> {
                   ],
                 ),
                 onPressed: () {
-                  var message = "button boş şuan";
-                  showMessage(context, message);
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => StudentEdit(selectedStudent)));
                 },
               ),
             ),
@@ -115,7 +114,7 @@ class _StudentManagerAppState extends State<StudentManagerApp> {
                   setState(() {
                     students.remove(selectedStudent);
                   });
-                  showMessage(context, selectedStudent.firstName+" deleted");
+                  showMessage(context, selectedStudent.firstName + " deleted");
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.red,
@@ -139,8 +138,7 @@ class _StudentManagerAppState extends State<StudentManagerApp> {
   }
 
   void showMessage(BuildContext context, String message) {
-    var alert =
-        AlertDialog(title: Text("process"), content: Text(message));
+    var alert = AlertDialog(title: Text("process"), content: Text(message));
     showDialog(context: context, builder: (BuildContext context) => alert);
   }
 }

@@ -15,7 +15,7 @@ class StudentValidationMixin{
 
   String? validateGradeName(String? value){
     int number = int.parse(value!);
-    if(number>100){
+    if(number >100 || number < 0){
       return "score must be smaller than 100";
     }
     return null;

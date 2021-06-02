@@ -1,28 +1,25 @@
 import 'package:basic_widget/models/student.dart';
-import 'package:basic_widget/models/student.dart';
-import 'package:basic_widget/models/student.dart';
 import 'package:basic_widget/validation/student_validator.dart';
 import 'package:flutter/material.dart';
 
 
-class StudentAdd extends StatefulWidget {
-  List<Student>? students;
-  StudentAdd(List<Student> students){
-    this.students=students;
+class StudentEdit extends StatefulWidget {
+  Student? selectedStudent;
+  StudentEdit(Student selectedStudent){
+    this.selectedStudent=selectedStudent;
   }
   @override
   State<StatefulWidget> createState() {
-    return _StudentAddState(students!);
+    return _StudentEditState(selectedStudent!);
   }
 }
 
-class _StudentAddState extends State with StudentValidationMixin {
-  List<Student>? students;
-  var student = Student.withId(0, "", "", 0);
+class _StudentEditState extends State with StudentValidationMixin {
+  Student? selectedStudent;
   var formKey = GlobalKey<FormState>();
 
-  _StudentAddState(List<Student> students){
-    this.students=students;
+  _StudentEditState(Student student){
+    this.selectedStudent=student;
   }
 
   @override
@@ -51,9 +48,10 @@ class _StudentAddState extends State with StudentValidationMixin {
   Widget buildFirstNameField() {
     return TextFormField(
       decoration: InputDecoration(labelText: "First Name", hintText: "Mehmet"),
+      initialValue: selectedStudent!.firstName,
       validator: validateFirstName,
       onSaved: (String? string) {
-        student.firstName = string!;
+        selectedStudent!.firstName = string!;
       },
     );
   }
@@ -61,9 +59,10 @@ class _StudentAddState extends State with StudentValidationMixin {
   Widget buildLastNameField() {
     return TextFormField(
       decoration: InputDecoration(labelText: "Last Name", hintText: "Yılmaz"),
+      initialValue: selectedStudent!.lastName,
       validator: validateLastName,
       onSaved: (String? value) {
-        student.lastName = value!;
+        selectedStudent!.lastName = value!;
       },
     );
   }
@@ -72,8 +71,9 @@ class _StudentAddState extends State with StudentValidationMixin {
     return TextFormField(
       validator: validateGradeName,
       decoration: InputDecoration(labelText: "Grade", hintText: "100"),
+      initialValue: selectedStudent!.grade.toString(),
       onSaved: (String? value) {
-        student.grade = int.parse(value!);
+        selectedStudent!.grade = int.parse(value!);
       },
     );
   }
@@ -84,9 +84,13 @@ class _StudentAddState extends State with StudentValidationMixin {
         onPressed: () {
           if (formKey.currentState!.validate()) {
             formKey.currentState!.save();
-            students!.add(student);
             Navigator.pop(context);
           }
         });
+  }
+  void show(Student student){
+    print(student.firstName);
+    print(student.lastName);
+    print(student.grade);
   }
 }
