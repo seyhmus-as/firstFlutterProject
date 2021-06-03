@@ -75,7 +75,7 @@ class _StudentManagerAppState extends State<StudentManagerApp> {
                   ],
                 ),
                 onPressed: () {
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => StudentAdd(students)));
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => StudentAdd(students))).then((value) => setState((){}));
                 },
                 style: ElevatedButton.styleFrom(primary: Colors.green,
                 ),
